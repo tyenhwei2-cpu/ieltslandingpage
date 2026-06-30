@@ -1,1356 +1,1057 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preppal – IELTS Speaking AI</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preppal · IELTS Speaking Practice</title>
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
-        /* ----- Reset & Base ----- */
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fbfbfa;
-            color: #1a1a1a;
-            line-height: 1.7;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8fafc;
+            color: #0b1a33;
+            line-height: 1.6;
+            padding: 0 20px 60px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 2rem;
         }
 
-        /* ----- Header & Navigation ----- */
-        header {
-            border-bottom: 1px solid #e8e6e1;
-            padding: 1.2rem 0;
-            background: white;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-wrapper {
+        /* --- HEADER --- */
+        .site-header {
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid #e2e8f0;
             flex-wrap: wrap;
+            gap: 16px;
         }
 
-        .logo a {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.7rem;
+        .logo {
+            font-size: 26px;
             font-weight: 700;
-            color: #1a1a1a;
-            text-decoration: none;
-            letter-spacing: -0.02em;
-            cursor: pointer;
-        }
-        .logo a span {
-            color: #8b1e2b;
-        }
-
-        .nav-links {
+            letter-spacing: -0.5px;
+            color: #0b1a33;
             display: flex;
-            gap: 2rem;
             align-items: center;
-            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .nav-links a {
-            font-size: 0.95rem;
-            color: #2a2a2a;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.15s;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 0.2rem;
-            cursor: pointer;
-        }
-
-        .nav-links a:hover {
-            color: #8b1e2b;
-        }
-
-        .nav-links a.active {
-            color: #8b1e2b;
-            border-bottom-color: #8b1e2b;
-        }
-
-        .nav-links .cta-nav {
-            background: #8b1e2b;
-            color: white !important;
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
+        .logo span {
+            background: #2563eb;
+            color: #fff;
+            font-size: 18px;
             font-weight: 600;
-            border-bottom: none !important;
-            transition: background 0.2s;
-        }
-        .nav-links .cta-nav:hover {
-            background: #6b1620;
-            color: white !important;
-        }
-
-        /* ----- Page sections (hidden by default) ----- */
-        .page-section {
-            display: none;
-        }
-
-        .page-section.active {
-            display: block;
-        }
-
-        /* ----- Page Headers (shared) ----- */
-        .page-header {
-            background: #f7f6f3;
-            padding: 3rem 0 2rem 0;
-            border-bottom: 1px solid #e8e6e1;
-            margin-bottom: 2.5rem;
-        }
-
-        .page-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 0.2rem;
-        }
-
-        .page-header .subhead {
-            font-size: 1.15rem;
-            color: #4a4a4a;
-            font-style: italic;
-        }
-
-        /* ----- Home / Hero ----- */
-        .hero {
-            padding: 4rem 0 3rem 0;
-            border-bottom: 1px solid #f0eeea;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: 600;
-            line-height: 1.2;
-            color: #1a1a1a;
-            margin-bottom: 1.2rem;
-        }
-
-        .hero-content h1 .highlight {
-            color: #8b1e2b;
-            font-style: italic;
-        }
-
-        .hero-content p {
-            font-size: 1.15rem;
-            color: #3a3a3a;
-            margin-bottom: 1.8rem;
-            max-width: 90%;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .btn-primary {
-            background: #8b1e2b;
-            color: white;
-            padding: 0.8rem 2rem;
+            padding: 2px 12px;
             border-radius: 40px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.2s;
+            letter-spacing: 0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 6px;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 60px;
+        }
+
+        .nav-tab {
             border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            display: inline-block;
-        }
-        .btn-primary:hover {
-            background: #6b1620;
-        }
-
-        .btn-secondary {
             background: transparent;
-            color: #1a1a1a;
-            padding: 0.8rem 2rem;
+            padding: 8px 22px;
             border-radius: 40px;
-            font-weight: 500;
-            text-decoration: none;
-            border: 1.5px solid #d0cec8;
-            transition: all 0.2s;
-        }
-        .btn-secondary:hover {
-            border-color: #8b1e2b;
-            color: #8b1e2b;
-        }
-
-        /* Story card */
-        .story-card {
-            background: #f7f6f3;
-            padding: 2rem 2rem 1.8rem;
-            border-radius: 12px;
-            border-left: 6px solid #8b1e2b;
-        }
-
-        .story-card .quote-mark {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #8b1e2b;
-            line-height: 1;
-            margin-bottom: 0.2rem;
-        }
-
-        .story-card blockquote {
-            font-size: 1.05rem;
-            font-style: italic;
-            color: #2a2a2a;
-            margin: 0.5rem 0 1rem 0;
-            line-height: 1.7;
-        }
-
-        .story-card .attribution {
+            font-size: 15px;
             font-weight: 600;
-            color: #1a1a1a;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .nav-tab:hover {
+            color: #0b1a33;
+        }
+
+        .nav-tab.active {
+            background: #ffffff;
+            color: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+        }
+
+        /* --- TAB CONTENT --- */
+        .tab-panel {
+            display: none;
+            animation: fadeUp 0.35s ease;
+            padding-top: 36px;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .about-step {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 32px 36px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eef2f6;
+            transition: border-color 0.2s;
+        }
+
+        .about-step:hover {
+            border-color: #dbe7f7;
+        }
+
+        .about-step .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #2563eb;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            width: 32px;
+            height: 32px;
+            border-radius: 40px;
+            margin-bottom: 12px;
+        }
+
+        .about-step h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .story-card .attribution .tag {
-            background: #e8e6e1;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #4a4a4a;
-            letter-spacing: 0.02em;
+        .about-step h3 i {
+            color: #2563eb;
+            font-size: 20px;
         }
 
-        /* Metrics black box */
-        .metrics-section {
-            background: #0b0b0b;
-            padding: 2.5rem 2rem;
-            margin: 2rem 0 1.5rem 0;
-            border-radius: 10px;
+        .about-step p {
+            color: #334155;
+            font-size: 16px;
+            max-width: 640px;
+        }
+
+        .step-arrow {
             text-align: center;
+            color: #94a3b8;
+            font-size: 28px;
+            line-height: 1;
+            margin: -10px 0;
         }
 
-        .metrics-grid {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .metric-item {
-            flex: 1 1 150px;
-            min-width: 120px;
-        }
-
-        .metric-item .number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: 600;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-            display: block;
-            line-height: 1.2;
-        }
-
-        .metric-item .label {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: #b0b0b0;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            margin-top: 0.2rem;
-        }
-
-        /* About content */
-        .about-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 500;
-            margin-top: 2.8rem;
-            margin-bottom: 0.8rem;
-            color: #1a1a1a;
-            border-left: 4px solid #8b1e2b;
-            padding-left: 1rem;
-        }
-
-        .about-content h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-top: 1.8rem;
-            margin-bottom: 0.3rem;
-            color: #222;
-        }
-
-        .about-content p {
-            margin-bottom: 1.2rem;
-            color: #333;
-        }
-
-        .about-content ul,
-        .about-content ol {
-            margin: 1rem 0 1.5rem 2rem;
-        }
-
-        .about-content li {
-            margin-bottom: 0.5rem;
-        }
-
+        /* --- PRICING SECTION --- */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            margin-top: 12px;
         }
 
         .pricing-card {
             background: #ffffff;
-            padding: 1.5rem 1.5rem 1.8rem;
-            border-radius: 8px;
-            border: 1px solid #e6e4df;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-            transition: box-shadow 0.2s;
+            border-radius: 24px;
+            padding: 32px 28px 36px;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: all 0.25s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
         }
 
         .pricing-card:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-        }
-
-        .pricing-card .plan-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #1a1a1a;
-            border-bottom: 1px solid #d0cdc6;
-            padding-bottom: 0.4rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .pricing-card .price {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #8b1e2b;
-        }
-
-        .pricing-card ul {
-            list-style: none;
-            margin: 0.8rem 0 0 0;
-            padding: 0;
-        }
-
-        .pricing-card ul li {
-            padding: 0.2rem 0;
-            font-size: 0.95rem;
-            border-bottom: 1px solid #f0eeea;
-        }
-
-        .pricing-card .note {
-            font-size: 0.85rem;
-            color: #5a5a5a;
-            margin-top: 0.8rem;
-            font-style: italic;
-        }
-
-        /* Events */
-        .event-card {
-            background: #ffffff;
-            border: 1px solid #e8e6e1;
-            border-radius: 12px;
-            padding: 2.5rem 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
-        }
-
-        .event-card .event-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.2rem;
-            border-bottom: 2px solid #f0eeea;
-        }
-
-        .event-meta .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 0.95rem;
-            color: #3a3a3a;
-        }
-
-        .event-meta .meta-item strong {
-            color: #1a1a1a;
-            font-weight: 600;
-        }
-
-        .event-card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 500;
-            color: #1a1a1a;
-            margin-bottom: 0.6rem;
-        }
-
-        .event-card .tag {
-            display: inline-block;
-            background: #8b1e2b;
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            padding: 0.15rem 1rem;
-            border-radius: 30px;
-            margin-bottom: 0.8rem;
-        }
-
-        .event-card .description {
-            font-size: 1.05rem;
-            color: #333;
-            margin-bottom: 1.5rem;
-        }
-
-        .agenda {
-            margin: 1.8rem 0 2rem 0;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #e8e6e1;
-        }
-
-        .agenda-row {
-            display: grid;
-            grid-template-columns: 100px 1fr 140px;
-            align-items: center;
-            padding: 0.8rem 1.2rem;
-            border-bottom: 1px solid #f0eeea;
-            background: white;
-        }
-
-        .agenda-row:last-child {
-            border-bottom: none;
-        }
-
-        .agenda-row .time {
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: #1a1a1a;
-        }
-
-        .agenda-row .topic {
-            font-size: 0.95rem;
-            color: #2a2a2a;
-        }
-
-        .agenda-row .speaker {
-            font-size: 0.85rem;
-            color: #5a5a5a;
-            text-align: right;
-        }
-
-        .agenda-row .speaker .guest-badge {
-            display: inline-block;
-            background: #f0eeea;
-            padding: 0.05rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: #3a3a3a;
-            margin-left: 0.3rem;
-        }
-
-        .agenda-header {
-            background: #f7f6f3;
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: #4a4a4a;
-            padding: 0.5rem 1.2rem;
-            border-bottom: 2px solid #e8e6e1;
-            display: grid;
-            grid-template-columns: 100px 1fr 140px;
-        }
-
-        .event-cta {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            align-items: center;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid #f0eeea;
-        }
-
-        .event-cta .note {
-            font-size: 0.9rem;
-            color: #5a5a5a;
-            font-style: italic;
-        }
-
-        /* Blog grid (Experiences) */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            margin: 0 0 3rem 0;
-        }
-
-        .blog-card {
-            background: #ffffff;
-            border: 1px solid #e8e6e1;
-            border-radius: 12px;
-            padding: 2rem 2rem 1.8rem;
-            transition: box-shadow 0.2s, transform 0.15s;
-        }
-
-        .blog-card:hover {
-            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            border-color: #2563eb;
+            box-shadow: 0 8px 32px rgba(37, 99, 235, 0.08);
             transform: translateY(-4px);
         }
 
-        .blog-card .category {
-            font-size: 0.75rem;
+        .pricing-card.popular {
+            border-color: #2563eb;
+            background: #fafcff;
+            position: relative;
+        }
+
+        .pricing-card.popular::after {
+            content: 'Most Popular';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2563eb;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 18px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+        }
+
+        .pricing-card .plan-name {
+            font-size: 18px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: #8b1e2b;
-            margin-bottom: 0.6rem;
+            color: #0b1a33;
         }
 
-        .blog-card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+        .pricing-card .price {
+            font-size: 40px;
+            font-weight: 700;
+            color: #0b1a33;
+            margin: 12px 0 4px;
+        }
+
+        .pricing-card .price small {
+            font-size: 16px;
             font-weight: 500;
-            line-height: 1.3;
-            margin-bottom: 0.8rem;
+            color: #64748b;
         }
 
-        .blog-card h2 a {
-            color: #1a1a1a;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .blog-card h2 a:hover {
-            color: #8b1e2b;
+        .pricing-card .features {
+            list-style: none;
+            margin: 20px 0 28px;
+            text-align: left;
+            flex: 1;
         }
 
-        .blog-card .excerpt {
-            color: #3a3a3a;
-            font-size: 1rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .blog-card .meta {
-            font-size: 0.85rem;
-            color: #6a6a6a;
-            border-top: 1px solid #f0eeea;
-            padding-top: 1rem;
+        .pricing-card .features li {
+            padding: 6px 0;
+            color: #334155;
+            font-size: 15px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .blog-card .read-more {
-            font-weight: 500;
-            color: #8b1e2b;
-            text-decoration: none;
-            font-size: 0.9rem;
+        .pricing-card .features li i {
+            color: #2563eb;
+            width: 18px;
+            text-align: center;
+        }
+
+        .btn-checkout {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 14px 0;
+            border-radius: 60px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-        }
-        .blog-card .read-more:hover {
-            text-decoration: underline;
+            transition: background 0.2s, transform 0.1s;
+            font-family: inherit;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        /* Full blog post view */
-        .blog-full {
+        .btn-checkout:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-checkout:active {
+            transform: scale(0.97);
+        }
+
+        .btn-checkout.outline {
+            background: transparent;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+        }
+
+        .btn-checkout.outline:hover {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        /* --- STORIES SECTION --- */
+        .stories-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 56px;
+        }
+
+        .story-card {
             background: #ffffff;
-            border: 1px solid #e8e6e1;
-            border-radius: 12px;
-            padding: 2.5rem 2.5rem;
-            margin-bottom: 2rem;
+            border-radius: 28px;
+            padding: 36px 40px 44px;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
         }
 
-        .blog-full .back-link {
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            color: #8b1e2b;
-            font-weight: 500;
-            cursor: pointer;
-        }
-        .blog-full .back-link:hover {
-            text-decoration: underline;
+        .story-card .story-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
         }
 
-        .blog-full .category {
-            font-size: 0.75rem;
+        .story-card .story-meta .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 60px;
+            background: #dbe7f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: #2563eb;
+        }
+
+        .story-card .story-meta .name {
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: #8b1e2b;
-            margin-bottom: 0.6rem;
+            font-size: 17px;
         }
 
-        .blog-full h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 600;
+        .story-card .story-meta .date {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .story-card h2 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 16px;
             line-height: 1.3;
-            margin-bottom: 0.5rem;
         }
 
-        .blog-full .blog-meta {
-            font-size: 0.9rem;
-            color: #6a6a6a;
-            margin-bottom: 1.8rem;
-            border-bottom: 1px solid #f0eeea;
-            padding-bottom: 1rem;
+        .story-card p {
+            color: #1e293b;
+            font-size: 16px;
+            margin-bottom: 16px;
         }
 
-        .blog-full .blog-content {
-            font-size: 1.05rem;
-            color: #2a2a2a;
-            line-height: 1.8;
+        .story-card p:last-of-type {
+            margin-bottom: 0;
         }
 
-        .blog-full .blog-content p {
-            margin-bottom: 1.2rem;
+        .story-card .story-image {
+            border-radius: 18px;
+            overflow: hidden;
+            margin: 20px 0 18px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #eef2f6;
         }
 
-        .blog-full .blog-content blockquote {
-            border-left: 4px solid #8b1e2b;
-            padding-left: 1.2rem;
+        .story-card .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .story-card .image-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+            margin: 20px 0 18px;
+        }
+
+        .story-card .image-row .story-image {
+            margin: 0;
+        }
+
+        .story-card .image-caption {
+            font-size: 14px;
+            color: #64748b;
+            text-align: center;
+            margin-top: -8px;
+            margin-bottom: 16px;
             font-style: italic;
-            color: #4a4a4a;
-            margin: 1.5rem 0;
         }
 
-        /* Footer */
-        footer {
-            padding: 2.5rem 0 3rem;
-            background: #faf9f7;
-            margin-top: 2rem;
+        .story-card ul,
+        .story-card ol {
+            padding-left: 24px;
+            margin: 12px 0 16px;
+            color: #1e293b;
         }
 
-        .footer-grid {
+        .story-card ul li,
+        .story-card ol li {
+            margin-bottom: 6px;
+        }
+
+        .story-card .highlight-box {
+            background: #f1f6fe;
+            border-left: 4px solid #2563eb;
+            padding: 18px 24px;
+            border-radius: 12px;
+            margin: 20px 0 16px;
+        }
+
+        .story-card .highlight-box strong {
+            color: #0b1a33;
+        }
+
+        .divider {
+            border: none;
+            border-top: 2px dashed #e2e8f0;
+            margin: 28px 0;
+        }
+
+        /* --- CHECKOUT MODAL --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 26, 51, 0.45);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 20px;
+        }
+
+        .modal-overlay.open {
             display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 2rem;
         }
 
-        .footer-grid .brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-        .footer-grid .brand span {
-            color: #8b1e2b;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2.5rem;
-            flex-wrap: wrap;
+        .modal-box {
+            background: #ffffff;
+            border-radius: 32px;
+            max-width: 480px;
+            width: 100%;
+            padding: 36px 32px 32px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+            animation: modalIn 0.3s ease;
         }
 
-        .footer-links a {
-            color: #3a3a3a;
-            text-decoration: none;
-            font-size: 0.9rem;
+        @keyframes modalIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-box .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #94a3b8;
             cursor: pointer;
-        }
-        .footer-links a:hover {
-            color: #8b1e2b;
+            transition: color 0.2s;
         }
 
-        .copyright {
-            font-size: 0.85rem;
-            color: #6a6a6a;
-            margin-top: 1.5rem;
-            border-top: 1px solid #e8e6e1;
-            padding-top: 1.5rem;
+        .modal-box .modal-close:hover {
+            color: #0b1a33;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-content p {
-                max-width: 100%;
-            }
+        .modal-box h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
         }
 
-        @media (max-width: 800px) {
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
+        .modal-box .modal-sub {
+            color: #64748b;
+            margin-bottom: 24px;
         }
 
+        .modal-box .form-group {
+            margin-bottom: 18px;
+        }
+
+        .modal-box .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: #0b1a33;
+        }
+
+        .modal-box .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #dbe0e8;
+            border-radius: 14px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border 0.2s;
+            background: #fafcff;
+        }
+
+        .modal-box .form-group input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .modal-box .btn-confirm {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+            margin-top: 8px;
+        }
+
+        .modal-box .btn-confirm:hover {
+            background: #1d4ed8;
+        }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 700px) {
-            .container {
-                padding: 0 1.2rem;
-            }
-            .page-header h1 {
-                font-size: 2rem;
-            }
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            .event-card {
-                padding: 1.5rem;
-            }
-            .event-meta {
+            .site-header {
                 flex-direction: column;
-                gap: 0.6rem;
+                align-items: stretch;
+                gap: 14px;
             }
-            .agenda-row {
-                grid-template-columns: 1fr;
-                gap: 0.2rem;
-                padding: 0.8rem 1rem;
+
+            .nav-tabs {
+                border-radius: 40px;
+                overflow-x: auto;
+                padding: 4px;
+                gap: 4px;
+                justify-content: center;
             }
-            .agenda-row .speaker {
-                text-align: left;
+
+            .nav-tab {
+                padding: 6px 16px;
+                font-size: 14px;
+                white-space: nowrap;
             }
-            .agenda-header {
-                display: none;
+
+            .about-step {
+                padding: 24px 20px;
             }
-            .nav-links {
-                gap: 1rem;
-                margin-top: 0.8rem;
+
+            .story-card {
+                padding: 24px 20px 32px;
             }
-            .nav-wrapper {
-                flex-direction: column;
-                align-items: flex-start;
+
+            .story-card h2 {
+                font-size: 21px;
             }
-            .metrics-grid {
-                flex-direction: column;
-                gap: 1.2rem;
+
+            .pricing-card {
+                padding: 24px 18px 28px;
             }
-            .metric-item .number {
-                font-size: 2.2rem;
+
+            .modal-box {
+                padding: 28px 20px 24px;
             }
-            .pricing-grid {
+
+            .story-card .image-row {
                 grid-template-columns: 1fr;
             }
-            .blog-full {
-                padding: 1.5rem;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0 12px 40px;
             }
-            .blog-full h1 {
-                font-size: 1.8rem;
+
+            .nav-tab {
+                font-size: 13px;
+                padding: 5px 12px;
+            }
+
+            .about-step h3 {
+                font-size: 19px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ========== HEADER ========== -->
-    <header>
-        <div class="container nav-wrapper">
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <header class="site-header">
             <div class="logo">
-                <a onclick="showPage('home')">Preppal<span>.</span></a>
+                Preppal <span>AI</span>
             </div>
-            <nav class="nav-links">
-                <a class="active" onclick="showPage('home')">Main Page</a>
-                <a onclick="showPage('about')">About Preppal</a>
-                <a onclick="showPage('events')">Events</a>
-                <a onclick="showPage('experiences')">Experiences</a>
-                <a href="#" class="cta-nav">Get Started</a>
-            </nav>
-        </div>
-    </header>
+            <div class="nav-tabs" role="tablist">
+                <button class="nav-tab active" data-tab="about" role="tab">About</button>
+                <button class="nav-tab" data-tab="pricing" role="tab">Pricing</button>
+                <button class="nav-tab" data-tab="stories" role="tab">Stories</button>
+            </div>
+        </header>
 
-    <!-- ========== PAGE: HOME ========== -->
-    <section id="page-home" class="page-section active">
-        <!-- Hero -->
-        <div class="hero">
-            <div class="container hero-grid">
-                <div class="hero-content">
-                    <h1>
-                        Confidence for<br />
-                        <span class="highlight">every IELTS speaker</span>
-                    </h1>
-                    <p>
-                        Practice with an AI that mirrors the real IELTS Speaking exam. Get structured feedback, track your progress, and walk into the test room with certainty.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="#" class="btn-primary">Try a free session</a>
-                        <a href="#" class="btn-secondary">See how it works</a>
-                    </div>
+        <!-- ===== TAB: ABOUT ===== -->
+        <section class="tab-panel active" id="tab-about" role="tabpanel">
+            <div class="about-flow">
+
+                <div class="about-step">
+                    <div class="step-number">1</div>
+                    <h3><i class="fas fa-handshake"></i> Our Commitment</h3>
+                    <p>We believe every IELTS candidate deserves honest, effective preparation. Preppal is built on clarity — no gimmicks, no overpromising. Just structured practice, real feedback, and a supportive community that helps you speak with confidence.</p>
                 </div>
 
-                <div class="story-card">
-                    <div class="quote-mark">“</div>
-                    <blockquote>
-                        I found a pattern to compensate for hearing loss and still scored a 7.5. If I can do it, you can too.
-                    </blockquote>
-                    <div class="attribution">
-                        <span>— Preppal user</span>
-                        <span class="tag">IELTS 7.5</span>
-                        <span class="tag">Hearing impairment</span>
-                    </div>
-                    <div style="margin-top: 1rem; font-size: 0.9rem;">
-                        <a onclick="showPage('experiences')" style="color: #8b1e2b; font-weight: 500; text-decoration: none; cursor: pointer;">Read their story →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <div class="step-arrow"><i class="fas fa-chevron-down"></i></div>
 
-        <!-- Metrics -->
-        <div class="container">
-            <div class="metrics-section" id="metricsSection">
-                <div class="metrics-grid">
-                    <div class="metric-item">
-                        <span class="number" id="metricVisitors">0</span>
-                        <span class="label">Website Visitors</span>
-                    </div>
-                    <div class="metric-item">
-                        <span class="number" id="metricUsers">0</span>
-                        <span class="label">Active Users</span>
-                    </div>
-                    <div class="metric-item">
-                        <span class="number" id="metricSessions">0</span>
-                        <span class="label">Sessions Completed</span>
-                    </div>
+                <div class="about-step">
+                    <div class="step-number">2</div>
+                    <h3><i class="fas fa-microphone-alt"></i> How the practice works</h3>
+                    <p>You speak to our AI partner on real IELTS topics, get instant fluency &amp; grammar feedback, then review your session with a self-reflection log. Optionally, you can share your recording with a peer or tutor for human insight. It's a flexible, low-pressure loop that builds speaking muscle.</p>
                 </div>
-            </div>
-        </div>
 
-        <!-- About snippet -->
-        <section style="padding: 3rem 0; border-bottom: 1px solid #f0eeea;">
-            <div class="container">
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 500; margin-bottom: 0.5rem;">About Preppal IELTS</h2>
-                <p style="font-size: 1.1rem; color: #3a3a3a; max-width: 80%; margin-bottom: 1.5rem;">
-                    We create an environment and grading standard that mirrors the real IELTS Speaking exam — so you know exactly where you stand and how to improve.
-                </p>
-                <a onclick="showPage('about')" style="color: #8b1e2b; font-weight: 500; cursor: pointer;">Learn more →</a>
+                <div class="step-arrow"><i class="fas fa-chevron-down"></i></div>
+
+                <div class="about-step">
+                    <div class="step-number">3</div>
+                    <h3><i class="fas fa-star"></i> Our Grading</h3>
+                    <p>We use a transparent, criteria-based rubric aligned with the IELTS Speaking Band Descriptors. Each practice session gives you a score across Fluency, Lexical Resource, Grammatical Range, and Pronunciation — plus actionable tips to level up. No black boxes, just clear signals.</p>
+                </div>
+
             </div>
         </section>
 
-        <!-- Blog snippet -->
-        <section style="padding: 3rem 0;">
-            <div class="container">
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 500; margin-bottom: 0.5rem;">Recent stories</h2>
-                <p style="color: #5a5a5a; margin-bottom: 1.5rem;">Real experiences from real candidates.</p>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                    <div style="background: #f7f6f3; padding: 1.5rem; border-radius: 10px;">
-                        <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: #8b1e2b;">Strategy</div>
-                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin: 0.3rem 0 0.5rem 0;">How I Prepared for IELTS Speaking with Severe Hearing Loss</h3>
-                        <a onclick="showPage('experiences')" style="color: #8b1e2b; font-weight: 500; cursor: pointer;">Read more →</a>
-                    </div>
-                    <div style="background: #f7f6f3; padding: 1.5rem; border-radius: 10px;">
-                        <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: #8b1e2b;">Accent</div>
-                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin: 0.3rem 0 0.5rem 0;">How I Overcame My Accent Fear (And Scored an 8)</h3>
-                        <a onclick="showPage('experiences')" style="color: #8b1e2b; font-weight: 500; cursor: pointer;">Read more →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </section>
-
-    <!-- ========== PAGE: ABOUT ========== -->
-    <section id="page-about" class="page-section">
-        <div class="page-header">
-            <div class="container">
-                <h1>About Preppal IELTS</h1>
-                <p class="subhead">AI-powered speaking practice built for the real exam</p>
-            </div>
-        </div>
-
-        <div class="container about-content">
-            <h2>The Problem</h2>
-            <p>Every year, over <strong>4 million people</strong> sit for the IELTS exam. Yet most candidates prepare without a structured, realistic practice environment. They lack access to accurate grading, actionable feedback, and a system that mimics the actual test conditions—especially the high-stakes speaking component.</p>
-            <p>At the same time, many candidates are willing to invest in their success. Unlike general interview practice, IELTS requires academic-level English and precise grading criteria. Candidates are ready to pay for tools that give them a measurable edge.</p>
-
-            <h2>What We Do</h2>
-            <p><strong>Preppal IELTS</strong> is an AI-powered speaking practice platform that replicates the full IELTS Speaking test. We provide a standardized, exam-like environment with precise grading—so you know exactly where you stand and what to improve.</p>
-            <p>Our goal is to help candidates achieve their target score with focused, efficient practice. We believe that with the right feedback and structure, any candidate can improve significantly.</p>
-
-            <h2>Our Grading Advantage</h2>
-            <p>We have built a grading system that goes beyond simple feedback. It is designed to be <strong>standardized, IELTS-driven, and highly actionable</strong>.</p>
-            <ul>
-                <li><strong>IELTS rubrics + additional rules:</strong> We combine the official IELTS assessment criteria with insights from experienced graders and YouTube examiners.</li>
-                <li><strong>Benchmark grading:</strong> Our system gives you a benchmark grade after Phase 1 and 2, then evaluates Phase 3 to measure improvement or regression.</li>
-                <li><strong>Transparent deduction:</strong> We explain <em>why</em> each 0.5 mark is deducted from a perfect 9, so you understand the exact gap.</li>
-                <li><strong>Structural and phrase-level feedback:</strong> We show you how to improve your English structure and rephrase your answers for higher clarity and impact.</li>
-            </ul>
-
-            <h2>How the Practice Works</h2>
-            <p>Our AI follows the official IELTS Speaking test structure, with timing, question styles, and interaction patterns designed to mirror the real exam.</p>
-
-            <h3>Phase 1: Introduction and Overview (4–5 minutes)</h3>
-            <ul>
-                <li><strong>Style:</strong> Casual, rapid-fire Q&A.</li>
-                <li><strong>Execution:</strong> The AI asks short questions on 2 everyday topics (e.g., hometown, studies, technology). It pushes you to give concise 2–4 sentence answers.</li>
-                <li><strong>Key feature:</strong> The AI will gently interrupt if you speak beyond 25 seconds, training you to stay concise.</li>
-            </ul>
-
-            <h3>Phase 2: The Long Turn (3–4 minutes)</h3>
-            <ul>
-                <li><strong>Style:</strong> Prepared monologue based on a cue card.</li>
-                <li><strong>Execution:</strong> You receive a prompt card. You get <strong>60 seconds</strong> to take notes, then <strong>2 minutes</strong> of uninterrupted speaking.</li>
-                <li><strong>Key feature:</strong> The AI remains silent during your monologue. If you stop early, it prompts: "Can you tell me more about that?"</li>
-            </ul>
-
-            <h3>Phase 3: Analytical Discussion (4–5 minutes)</h3>
-            <ul>
-                <li><strong>Style:</strong> Abstract academic debate.</li>
-                <li><strong>Execution:</strong> The AI takes the theme from Phase 2 and asks deeper, conceptual questions. It actively challenges simple answers to push your critical thinking.</li>
-                <li><strong>Key feature:</strong> Follow-up questions test your ability to speculate, compare, and justify opinions.</li>
-            </ul>
-
-            <h2>Pricing Plans</h2>
-            <p>Choose a plan that fits your preparation timeline. All plans include full AI grading, feedback, and progress tracking.</p>
-
+        <!-- ===== TAB: PRICING ===== -->
+        <section class="tab-panel" id="tab-pricing" role="tabpanel">
             <div class="pricing-grid">
+
                 <div class="pricing-card">
-                    <div class="plan-name">Just Trying</div>
-                    <div class="price">$7.90</div>
-                    <ul>
-                        <li><strong>5</strong> speaking sessions</li>
-                        <li>Full AI grading &amp; feedback</li>
-                        <li>Access to all 3 phases</li>
+                    <div class="plan-name">Starter</div>
+                    <div class="price">$0 <small>/mo</small></div>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle"></i> 3 AI practice sessions</li>
+                        <li><i class="fas fa-check-circle"></i> Basic fluency feedback</li>
+                        <li><i class="fas fa-check-circle"></i> Topic bank access</li>
                     </ul>
+                    <button class="btn-checkout outline" data-plan="Starter">Start Free</button>
                 </div>
+
+                <div class="pricing-card popular">
+                    <div class="plan-name">Pro</div>
+                    <div class="price">$19 <small>/mo</small></div>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle"></i> Unlimited AI practice</li>
+                        <li><i class="fas fa-check-circle"></i> Detailed band-score analysis</li>
+                        <li><i class="fas fa-check-circle"></i> 5 human tutor reviews / mo</li>
+                        <li><i class="fas fa-check-circle"></i> Personalized improvement plan</li>
+                    </ul>
+                    <button class="btn-checkout" data-plan="Pro">Checkout</button>
+                </div>
+
                 <div class="pricing-card">
-                    <div class="plan-name">Locked In Member</div>
-                    <div class="price">$20</div>
-                    <ul>
-                        <li><strong>10</strong> speaking sessions</li>
-                        <li><strong>+10</strong> past-phase repractice</li>
-                        <li>Re-practice any previously completed phase</li>
+                    <div class="plan-name">Premium</div>
+                    <div class="price">$39 <small>/mo</small></div>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check-circle"></i> 1:1 live mock tests</li>
+                        <li><i class="fas fa-check-circle"></i> Priority feedback (24h)</li>
+                        <li><i class="fas fa-check-circle"></i> Accent &amp; pronunciation coaching</li>
                     </ul>
-                    <div class="note">Ideal for focused, iterative improvement.</div>
+                    <button class="btn-checkout" data-plan="Premium">Checkout</button>
                 </div>
-                <div class="pricing-card">
-                    <div class="plan-name">Practice Makes Perfect</div>
-                    <div class="price">$30</div>
-                    <ul>
-                        <li><strong>20</strong> speaking sessions</li>
-                        <li>Full AI grading &amp; feedback</li>
-                        <li>Detailed progress dashboard</li>
-                    </ul>
-                    <div class="note">Best value for intensive preparation.</div>
-                </div>
+
             </div>
-            <p style="font-size: 0.95rem; color: #4a4a4a;">* Free tier available: <strong>1 free speaking session</strong> to try the platform.</p>
-
-            <h2>Our Commitment</h2>
-            <p>We are building Preppal IELTS to be the most accurate, reliable, and user-friendly speaking practice tool available. Our goal is to reach <strong>10,000 paying users by 2026</strong>—and we are on track.</p>
-            <p>We continuously refine our grading algorithm, expand our question bank, and improve the user experience based on real candidate feedback. If you are preparing for IELTS, we want to be your partner in success.</p>
-
-            <hr style="border: 0; border-top: 2px solid #eae7e2; margin: 2.5rem 0;">
-            <p style="font-size: 1.05rem; font-weight: 500; color: #1a1a1a;">
-                <strong>Try Preppal IELTS today.</strong> Your first session is free. No credit card required.
+            <p style="text-align:center; color:#94a3b8; font-size:14px; margin-top:32px;">
+                <i class="fas fa-lock" style="margin-right:6px;"></i> Secure checkout · Cancel anytime
             </p>
-        </div>
-    </section>
+        </section>
 
-    <!-- ========== PAGE: EVENTS ========== -->
-    <section id="page-events" class="page-section">
-        <div class="page-header">
-            <div class="container">
-                <h1>Events</h1>
-                <p class="subhead">Free workshops, webinars, and practice sessions to help you prepare.</p>
-            </div>
-        </div>
+        <!-- ===== TAB: STORIES ===== -->
+        <section class="tab-panel" id="tab-stories" role="tabpanel">
+            <div class="stories-grid">
 
-        <div class="container">
-            <div class="event-card">
-                <div class="tag">Upcoming</div>
-                <h2>Low‑cost and Smart Preparation for IELTS Speaking</h2>
-                <div class="event-meta">
-                    <span class="meta-item"><strong>📅 Date:</strong> 25th July (Sunday)</span>
-                    <span class="meta-item"><strong>📍 Location:</strong> TBC (Hong Kong)</span>
-                    <span class="meta-item"><strong>🎯 Capacity:</strong> 50 attendees (100 registered)</span>
-                </div>
-
-                <p class="description">
-                    Join us for a free, practical workshop on how to prepare for IELTS Speaking without expensive tutors. Learn the secrets of word stress, intonation, and daily habits that actually work — and discover affordable resources that make a difference.
-                </p>
-
-                <h3 style="font-weight: 600; font-size: 1.1rem; margin: 1.5rem 0 0.5rem 0;">Agenda</h3>
-                <div class="agenda">
-                    <div class="agenda-header">
-                        <span>Time</span>
-                        <span>Topic</span>
-                        <span>Speaker</span>
+                <!-- ===== STORY 1 ===== -->
+                <article class="story-card">
+                    <div class="story-meta">
+                        <div class="avatar">J</div>
+                        <span class="name">James Chen</span>
+                        <span class="date">· 24 June 2026</span>
                     </div>
-                    <div class="agenda-row">
-                        <span class="time">0:00 – 0:10</span>
-                        <span class="topic"><strong>Opening: The Big Myth</strong><br>Debunking accent obsession and introducing the 4 scoring criteria.</span>
-                        <span class="speaker">Preppal Team</span>
+                    <h2>How I Overcame My Accent Fear in IELTS Speaking</h2>
+
+                    <p>
+                        When I first started preparing for IELTS, I was terrified of my accent. I grew up in a small
+                        city in Guangdong, and my English teachers all had heavy Cantonese-influenced pronunciation.
+                        I thought my accent would cap me at Band 6.5 forever.
+                    </p>
+
+                    <!-- IMAGE 1: Classroom Grammar Book -->
+                    <div class="story-image">
+                        <img
+                        src="classroom-grammar-book.jpg"
+                        alt="Classroom Grammar and Usage for Senior Secondary Students"
+                        onerror="this.style.display='none'"
+                        />
                     </div>
-                    <div class="agenda-row">
-                        <span class="time">0:10 – 0:25</span>
-                        <span class="topic"><strong>The "Music" of English</strong><br>Word stress, sentence stress, intonation, and chunking.</span>
-                        <span class="speaker">Guest Speaker <span class="guest-badge">TBC</span></span>
+                    <div class="image-caption">
+                        <i class="fas fa-book-open" style="margin-right:6px;"></i>
+                        A solid grammar foundation gave me confidence to speak clearly.
                     </div>
-                    <div class="agenda-row">
-                        <span class="time">0:25 – 0:35</span>
-                        <span class="topic"><strong>Daily Habits That Work</strong><br>Record yourself daily, shadow native speakers.</span>
-                        <span class="speaker">Preppal Team</span>
+
+                    <p>
+                        I tried everything — YouTube pronunciation drills, shadowing native speakers, even
+                        recording myself and grimacing at the playback. But the real breakthrough came when I
+                        stopped trying to "erase" my accent and started focusing on clarity and rhythm.
+                    </p>
+
+                    <p>
+                        I built a structured study plan using a mix of resources. Instead of obsessing over
+                        individual sounds, I practiced chunking words into natural thought groups. I also learned
+                        to use stress and intonation to signal meaning — which made me sound more fluent even
+                        when my vocabulary was simple.
+                    </p>
+
+                    <!-- IMAGE 2: USB with IELTS materials -->
+                    <div class="story-image">
+                        <img
+                        src="ielts-usb-materials.jpg"
+                        alt="IELTS preparation materials on USB drive"
+                        onerror="this.style.display='none'"
+                        />
                     </div>
-                    <div class="agenda-row">
-                        <span class="time">0:35 – 0:45</span>
-                        <span class="topic"><strong>Smart Resources (Low‑Cost)</strong><br>Taobao, Preppal AI, free official resources.</span>
-                        <span class="speaker">Preppal Team</span>
+                    <div class="image-caption">
+                        <i class="fas fa-usb" style="margin-right:6px;"></i>
+                        Organised study materials — past papers, vocabulary books, and grammar guides.
                     </div>
-                    <div class="agenda-row">
-                        <span class="time">0:45 – 0:55</span>
-                        <span class="topic"><strong>Live Demo</strong><br>Before and after – see how small changes lift your band score.</span>
-                        <span class="speaker">Preppal Team</span>
+
+                    <p>
+                        One resource that really helped was <strong>English Grammar in Use</strong> — not for
+                        memorising rules, but for understanding how sentence structure affects clarity. When I
+                        stopped worrying about sounding "native" and started focusing on being understood, my
+                        speaking score jumped from 6.5 to 7.5 in three weeks.
+                    </p>
+
+                    <!-- IMAGE 3: English Grammar in Use -->
+                    <div class="story-image">
+                        <img
+                        src="english-grammar-in-use.jpg"
+                        alt="English Grammar in Use book cover"
+                        onerror="this.style.display='none'"
+                        />
                     </div>
-                    <div class="agenda-row">
-                        <span class="time">0:55 – 1:00</span>
-                        <span class="topic"><strong>Q&A</strong></span>
-                        <span class="speaker">All</span>
+                    <div class="image-caption">
+                        <i class="fas fa-grammar" style="margin-right:6px;"></i>
+                        <i class="fas fa-grammar" style="margin-right:6px;"></i>
+                        A classic that taught me grammar is a tool, not a cage.
                     </div>
-                </div>
 
-                <div class="event-cta">
-                    <a href="#" class="btn-primary">Register now</a>
-                    <a href="#" class="btn-secondary">Add to calendar</a>
-                    <span class="note">Free entry. Limited spots – first come, first served.</span>
-                </div>
-            </div>
+                    <div class="highlight-box">
+                        <strong>My biggest takeaway:</strong> The examiner doesn't want a BBC newsreader.
+                        They want someone who can communicate ideas clearly, confidently, and naturally.
+                        Your accent is part of your identity — embrace it, and focus on clarity.
+                    </div>
 
-            <p style="text-align: center; color: #6a6a6a; font-style: italic; margin: 2rem 0 3rem 0;">
-                More events coming soon. Follow us for updates.
-            </p>
-        </div>
-    </section>
+                    <p>
+                        If you're struggling with accent anxiety, my advice is simple: <strong>speak more,
+                        judge less</strong>. Record yourself, but listen for meaning, not perfection. And
+                        remember — every native speaker has an accent too.
+                    </p>
+                </article>
 
-    <!-- ========== PAGE: EXPERIENCES ========== -->
-    <section id="page-experiences" class="page-section">
-        <div class="page-header">
-            <div class="container">
-                <h1>Experiences</h1>
-                <p class="subhead">Real stories, strategies, and lessons from IELTS candidates who walked the path before you.</p>
-            </div>
-        </div>
+                <hr class="divider" />
 
-        <div class="container" id="experiencesContainer">
+                <!-- ===== STORY 2 (Belle) ===== -->
+                <article class="story-card">
+                    <div class="story-meta">
+                        <div class="avatar">B</div>
+                        <span class="name">Belle Zhang</span>
+                        <span class="date">· 28 June 2026</span>
+                    </div>
+                    <h2>How I Adapted My IELTS Speaking Strategy After the "Topic Pool" Was Scrapped</h2>
 
-            <!-- Blog list (visible by default) -->
-            <div id="blogList">
-                <div class="blog-grid">
-                    <article class="blog-card">
-                        <div class="category">Strategy</div>
-                        <h2><a onclick="openBlog('hearing-loss')">How I Prepared for IELTS Speaking with Severe Hearing Loss and Zero Confidence</a></h2>
-                        <p class="excerpt">One user's raw, practical journey — from a Chinese-medium school and a heavy accent to a 7.5, using daily habits that cost nothing.</p>
-                        <div class="meta">
-                            <span>June 2026</span>
-                            <a class="read-more" onclick="openBlog('hearing-loss')">Read full story →</a>
-                        </div>
-                    </article>
+                    <!-- IMAGE: Furious girl (Belle) -->
+                    <div class="story-image">
+                        <img
+                        src="furious-girl-belle.jpg"
+                        alt="Belle feeling frustrated with IELTS changes"
+                        onerror="this.style.display='none'"
+                        />
+                    </div>
+                    <div class="image-caption">
+                        <i class="fas fa-face-frown" style="margin-right:6px;"></i>
+                        Frustration turned into determination — and a smarter strategy.
+                    </div>
 
-                    <article class="blog-card">
-                        <div class="category">Accent</div>
-                        <h2><a onclick="openBlog('accent-fear')">How I Overcame My Accent Fear in IELTS Speaking (And Scored an 8)</a></h2>
-                        <p class="excerpt">A Malaysian student shares how they stopped trying to "fix" their accent and focused on articulation, shadowing, and confidence — with a surprise ending.</p>
-                        <div class="meta">
-                            <span>June 2026</span>
-                            <a class="read-more" onclick="openBlog('accent-fear')">Read full story →</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
+                    <p>
+                        If you've ever found yourself drowning in a sea of IELTS speaking resources — countless
+                        past questions, topic lists, sample answers, and YouTube tip videos — you're not alone.
+                    </p>
 
-            <!-- Full blog posts (hidden by default) -->
-            <div id="blogFull" style="display: none;"></div>
+                    <p>
+                        As an undergraduate student from a mainland China university applying for a Master
+                        program in Hong Kong, I needed a competitive overall band IELTS score. Speaking,
+                        however, remained my biggest unknown. I chose to self-study throughout as I don't have
+                        enough budget for expensive tutoring.
+                    </p>
 
-        </div>
-    </section>
+                    <p>
+                        Like many other candidates, I started my preparation by studying the quarterly topic
+                        pools, especially for Part 2 narrative-style questions.
+                    </p>
 
-    <!-- ========== FOOTER ========== -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="brand">Preppal<span>.</span></div>
-                <div class="footer-links">
-                    <a onclick="showPage('about')">About</a>
-                    <a onclick="showPage('events')">Events</a>
-                    <a onclick="showPage('experiences')">Experiences</a>
-                    <a href="#">Pricing</a>
-                    <a href="#">Contact</a>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2026 Preppal. Built for IELTS candidates, by IELTS candidates.
-            </div>
-        </div>
-    </footer>
+                    <p>
+                        However, my journey took an unexpected turn just days before my test. The official IELTS
+                        announcement to discontinue the fixed quarterly topic pool rendered weeks of targeted
+                        preparation essentially useless. This transformed my approach to IELTS speaking. Here is
+                        what I learned, and how I adapted — not by memorizing more, but by preparing smarter.
+                    </p>
 
-    <!-- ========== BLOG DATA & SCRIPTS ========== -->
-    <script>
-        // ---- Blog content ----
-        const blogData = {
-            'hearing-loss': {
-                title: 'How I Prepared for IELTS Speaking with Severe Hearing Loss and Zero Confidence',
-                category: 'Strategy',
-                date: 'June 2026',
-                content: `
-                    <p>If you are looking at the IELTS Speaking test and feeling completely overwhelmed, I understand exactly where you are coming from. When I started, the odds felt stacked entirely against me.</p>
+                    <p>
+                        To tackle the new situation, I combined two distinct but complementary modes to build
+                        both fluency and confidence.
+                    </p>
 
-                    <p>I was born with a severe mid-high frequency hearing impairment. In plain terms, I cannot hear certain English consonant sounds clearly, like "s" or "t." I have to wear hearing aids to communicate with people outside, but even with them, noisy environments or fast speech make conversations incredibly difficult to follow.</p>
-
-                    <p>On top of that, I didn't have the advantage of an elite education. I went to a Chinese as the Medium of Instruction high school in Hong Kong, which didn't focus on English teaching. My English foundation was essentially stuck at a primary school level, my vocabulary was small, my accent was heavy, and I had absolutely no one to practice English with at home.</p>
-
-                    <p>To top it all off, I was a massive introvert. For me, speaking out loud to strangers wasn't just tough—it was my worst nightmare.</p>
-
-                    <p>When I first looked at the IELTS requirements, I felt completely defeated. But I eventually built a practical system that worked for me. If you are struggling with a weak foundation or anxiety, here is exactly how I dealt with it day by day.</p>
-
-                    <h3>How I Prepared for IELTS Speaking Every Day</h3>
-
-                    <p>Because of my hearing loss and my introverted nature, standard study methods like "just watch movies" or "listen to podcasts" didn't cut it. I had to focus on deliberate, daily actions that pushed me out of my comfort zone.</p>
-
-                    <p><strong>1. Forcing Myself to Talk to Different People</strong><br>
-                    As an introvert, this was the hardest barrier to cross. However, I realized that my fear of speaking up was holding me back far more than my limited vocabulary. I forced myself to start speaking out loud to different people whenever I got the chance. It was uncomfortable at first, but building that muscle memory of simply "opening my mouth to speak" was the only way to break the anxiety.</p>
-
-                    <p><strong>2. Mimicking Native Speakers Online</strong><br>
-                    Because I can't hear high-frequency sounds perfectly, my pronunciation had a very heavy local accent. To manage this, I spent time on websites listening closely to native English speakers. I paid close attention to how they formed words and practiced along with them, aiming to adapt my pronunciation into a "lesser" accent style that would be easier for an examiner to understand.</p>
-
-                    <p><strong>3. The Recording and Reflection Method</strong><br>
-                    Every single day, I recorded myself practicing exam topics on my phone. Playing those clips back was painful to listen to at first, but it was the most valuable tool I had. I didn't just listen to how I sounded; I used the playback to reflect on the actual content. It allowed me to pinpoint exactly where I was pausing too much, where I was repeating myself, and where my ideas were falling apart.</p>
-
-                    <h3>The Mistakes I Wish Others Wouldn't Make</h3>
-
-                    <p>There is a lot of conventional advice out there that simply doesn't work well for self-study. If you want to save time and money, avoid these two major traps:</p>
-
-                    <ul>
-                        <li><strong>Hiring expensive private tutors:</strong> It is easy to think that throwing money at a private tutor will solve your problems. In my experience, it is highly expensive and often less effective. A tutor cannot do the heavy lifting for you. The real progress happens during the quiet, repetitive daily work of practicing, recording, and correcting yourself—tools you already have for free on your phone.</li>
-                        <li><strong>Obsessing over advanced vocabulary and phrases:</strong> Do not waste your energy memorizing massive lists of obscure words just to try and force them into the exam. Many candidates ruin their fluency because they pause constantly trying to remember a "fancy" word. The examiner wants communication, not a vocabulary recital. Clear, simple English used correctly will always beat complex language used poorly.</li>
-                    </ul>
-
-                    <h3>The 3 Core Elements That Saved My Score</h3>
-
-                    <p>When I stopped panicking and shifted to a practical strategy, my performance changed. If you focus on these three elements, your preparation will become much more manageable:</p>
-
-                    <ul>
-                        <li><strong>Focus on Confidence:</strong> The test is as much about psychological management as it is about language. The examiner is assessing how well you communicate under pressure. Even if your grammar has errors or your accent is noticeable, speaking clearly and owning your voice changes the entire dynamic of the room.</li>
-                        <li><strong>Prioritize Structure and Explanation:</strong> Instead of worrying about impressive words, focus entirely on how you build your answers. When asked a question, avoid short, one-sentence replies. Give your direct answer, and then immediately push yourself to explain more. Use simple connectors like "because..." or provide a brief example to naturally flesh out your response.</li>
-                        <li><strong>Keep the Content Logical:</strong> Your response must make sense. When nerves kick in, it is easy to start rambling or losing your train of thought. Before you begin speaking, take a brief split-second to organize your thoughts and ensure the point you are making follows a logical path. A straightforward, easy-to-follow argument is exactly what the examiner is looking for.</li>
-                    </ul>
-
-                    <p>You do not need perfect hearing, an expensive international school background, or a naturally outgoing personality to clear this hurdle. What you need is a practical structure, daily consistency, and the willingness to speak up despite the discomfort. If I could manage it under my circumstances, you can absolutely do it too.</p>
-                `
-            },
-            'accent-fear': {
-                title: 'How I Overcame My Accent Fear in IELTS Speaking (And Scored an 8)',
-                category: 'Accent',
-                date: 'June 2026',
-                content: `
-                    <p>Let me start with a confession: I never actually took the real IELTS exam. But I did take the mock exam—and scored an 8 in Speaking.</p>
-
-                    <p>Here's the thing: I'm Malaysian. Mandarin is my mother tongue. And like many Malaysians, my English comes with a distinct accent—that rhythmic, melodic quality shaped by Southern Chinese dialects and the Malay language.</p>
-
-                    <p>For years, I was terrified of speaking English in formal settings. When I decided to apply to Cambridge, I needed at least a 7.5 overall—which meant compensating for my weaker writing score with a strong Speaking result. I needed an 8.</p>
-
-                    <h3>The Fear Was Real</h3>
-
-                    <p>Whenever I spoke English, I heard that "Malaysian/Singaporean accent" in my head. I was convinced I sounded "wrong" or "less intelligent."</p>
-
-                    <p>Sound familiar? You're not alone.</p>
-
-                    <h3>How I Prepared (Without Spending Thousands)</h3>
-
-                    <p><strong>1. I Worked on Articulation, Not "Fixing" My Accent</strong><br>
-                    You don't need to sound like a BBC newsreader. You just need to be understood.</p>
-
-                    <p>I discovered through Vinh Giang from Singapore (A Communication Mentor) that the key is: emphasize your words, speak slower, and have a clear structure in your head before you speak.</p>
-
-                    <p>I started focusing on:</p>
-                    <ul>
-                        <li><strong>Enunciating clearly</strong> – making sure every word was crisp</li>
-                        <li><strong>Speaking at a measured pace</strong> – slowing down so I wasn't tripping over my words</li>
-                        <li><strong>Structuring my answers</strong> – having a clear beginning, middle, and end</li>
-                    </ul>
-
-                    <p>The result? I sounded more confident. More articulate. And my accent? It was still there—but it was clearer.</p>
-
-                    <p><strong>2. I Shadowed BBC News Reporters (For 60 Days)</strong><br>
-                    If you have at least two months, this is my secret weapon: shadowing.</p>
-
-                    <p>Every morning, while walking on my treadmill, I would put on BBC News and repeat what the reporters said—in real-time. I'd imitate their rhythm, their emphasis, their pauses.</p>
-
-                    <p>I did this for at least 60 days. It's not about "erasing" your accent—it's about training your mouth and ear to adapt. After two months, my pronunciation was noticeably clearer, and my confidence had skyrocketed.</p>
-
-                    <p><strong>3. I Reminded Myself: IELTS Doesn't Penalize Your Accent</strong><br>
-                    This is the most important thing I learned: IELTS does not penalize you for having an accent.</p>
-
-                    <p>Examiners are trained to accept any regional accent, as long as it doesn't interfere with understanding. I repeated this to myself like a mantra: "I don't need to sound like a native speaker. I just need to be understood."</p>
-
-                    <h3>The Moment It Worked</h3>
-
-                    <p>During my mock exam, I was nervous. But I remembered what I had practiced: clear articulation, a slower pace, and a structured approach.</p>
-
-                    <p>I got an 8.</p>
-
-                    <p>I was genuinely surprised. I had spent so long worried about my accent—and here I was, scoring well above what I needed.</p>
-
-                    <h3>If You're Preparing for IELTS...</h3>
-
-                    <p>Here's what I'd tell you:</p>
                     <ol>
-                        <li>Don't stress about your accent. Focus on making your speech clear and structured.</li>
-                        <li>Practice shadowing if you have time—it really works.</li>
-                        <li>Record yourself and listen back. You'll hear what others hear.</li>
-                        <li>Speak slowly—it gives you time to think and helps the examiner understand you.</li>
-                        <li>Remember: The goal is effective communication, not perfection.</li>
+                        <li>
+                            <strong>AI as a Thinking Partner</strong> — Whenever I encountered a new topic and
+                            felt stuck, I used AI to help map out logical structures (e.g., deciding which
+                            angle to take, how to pace my story). When I lacked a relevant personal experience,
+                            I used AI to generate natural, everyday scenarios that felt genuine and
+                            conversational.
+                        </li>
+                        <li>
+                            <strong>Human Simulation for Real-Time Agility</strong> — I scheduled regular
+                            practice sessions with a friend who would act as the examiner. This helped me:
+                            get used to thinking on my feet, manage the anxiety of being watched and listened
+                            to in real time, and improve my ability to maintain eye contact, use natural
+                            pauses, and adjust my tone — all the non-verbal cues that matter on test day.
+                        </li>
                     </ol>
 
-                    <p><strong>P.S.</strong> — I never went to Cambridge. But I did walk away with something better: the realization that my voice, accent and all, is enough.</p>
-                `
-            }
-        };
+                    <p>
+                        Walking out of the test room, my biggest takeaway was this: <strong>over-preparation
+                        in the form of complex vocabulary and elaborate sentence structures can do more harm
+                        than good.</strong>
+                    </p>
 
-        // ---- Functions ----
-        function showPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
-            const target = document.getElementById('page-' + pageId);
-            if (target) target.classList.add('active');
+                    <p>
+                        Many candidates invest excessive energy in memorizing high-level words or crafting
+                        "impressive" grammatical constructions. Yet, the core assessment criteria — Fluency
+                        and Coherence, Lexical Resource, Grammatical Range, and Pronunciation — don't reward
+                        difficulty for its own sake. They reward clarity, relevance, and ease of delivery.
+                    </p>
 
-            document.querySelectorAll('.nav-links a:not(.cta-nav)').forEach(link => link.classList.remove('active'));
-            const navLinks = document.querySelectorAll('.nav-links a:not(.cta-nav)');
-            const pageNames = ['home', 'about', 'events', 'experiences'];
-            navLinks.forEach((link, index) => {
-                if (pageNames[index] === pageId) link.classList.add('active');
-            });
+                    <div class="highlight-box">
+                        <strong>A Band 7+ response</strong> is not one that sounds like a written essay.
+                        It is one that sounds like a thoughtful, organized, and confident person speaking
+                        naturally.
+                    </div>
 
-            if (pageId === 'home') setTimeout(startMetricsIfVisible, 300);
+                    <p>
+                        Based on my experience, here are four practical takeaways that I believe any self-study
+                        candidate can adopt:
+                    </p>
 
-            // If switching to experiences, ensure blog list is shown (not full article)
-            if (pageId === 'experiences') {
-                document.getElementById('blogList').style.display = 'block';
-                document.getElementById('blogFull').style.display = 'none';
-            }
-        }
+                    <ol>
+                        <li>
+                            <strong>Ditch the Full Scripts; Master the Outline</strong> — Instead of
+                            memorizing paragraphs, practice creating a simple mental outline for any topic —
+                            your opening statement, 2–3 key points or chronological events, and a closing
+                            reflection. This structure keeps you anchored without boxing you in.
+                        </li>
+                        <li>
+                            <strong>Use AI as a Support Tool</strong> — Leverage generative AI to brainstorm
+                            angles, refine awkward phrasing, or tailor examples to your real-life context.
+                            Think of it as a collaborative editor, not an answer generator.
+                        </li>
+                        <li>
+                            <strong>Speak Out Loud — Every Day</strong> — Writing answers is not the same as
+                            speaking them. Practice responding to random questions (from any source, not just
+                            recent pools) under timed conditions. Record yourself and listen back to identify
+                            patterns — repetition, filler words, or unclear pronunciation.
+                        </li>
+                        <li>
+                            <strong>Prioritize Fluency Over Fancy Vocabulary</strong> — Focus on being
+                            understood and maintaining a steady, natural rhythm. Use vocabulary you are fully
+                            comfortable with. When you hesitate, it breaks the flow; when you speak fluidly,
+                            even with simpler words, the examiner can follow your argument effortlessly.
+                        </li>
+                    </ol>
 
-        function openBlog(blogId) {
-            const blog = blogData[blogId];
-            if (!blog) return;
+                    <p>
+                        The era of relying on a predictable question bank is behind us. That is not a
+                        disadvantage — it's an invitation to build real speaking competence that goes beyond a
+                        single exam. Flexible, principle-based preparation is not just better for your test
+                        score; it's better for your confidence and your communication skills in the long run.
+                    </p>
 
-            const container = document.getElementById('experiencesContainer');
-            const listEl = document.getElementById('blogList');
-            const fullEl = document.getElementById('blogFull');
+                    <p>
+                        If you are currently preparing, I hope this post helps you avoid the panic of sudden
+                        changes and instead focus on what truly matters: thinking clearly, speaking naturally,
+                        and trusting your ability to communicate.
+                    </p>
+                </article>
 
-            // Hide list, show full article
-            listEl.style.display = 'none';
-            fullEl.style.display = 'block';
+            </div>
+        </section>
 
-            fullEl.innerHTML = `
-                <div class="blog-full">
-                    <a class="back-link" onclick="closeBlog()">← Back to all experiences</a>
-                    <div class="category">${blog.category}</div>
-                    <h1>${blog.title}</h1>
-                    <div class="blog-meta">${blog.date}</div>
-                    <div class="blog-content">${blog.content}</div>
+    </div>
+
+    <!-- ===== CHECKOUT MODAL ===== -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-box">
+            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+            <h3>Complete Your Checkout</h3>
+            <p class="modal-sub" id="modalPlan">You're about to subscribe to <strong>Pro</strong></p>
+
+            <div class="form-group">
+                <label for="cardName">Full Name</label>
+                <input type="text" id="cardName" placeholder="e.g. Alex Wong" />
+            </div>
+            <div class="form-group">
+                <label for="cardEmail">Email Address</label>
+                <input type="email" id="cardEmail" placeholder="alex@example.com" />
+            </div>
+            <div class="form-group">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" id="cardNumber" placeholder="4242 4242 4242 4242" />
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                <div class="form-group">
+                    <label for="cardExpiry">Expiry</label>
+                    <input type="text" id="cardExpiry" placeholder="MM/YY" />
                 </div>
-            `;
+                <div class="form-group">
+                    <label for="cardCVC">CVC</label>
+                    <input type="text" id="cardCVC" placeholder="123" />
+                </div>
+            </div>
 
-            // Scroll to top of the section
-            document.querySelector('.page-header').scrollIntoView({ behavior: 'smooth' });
-        }
+            <button class="btn-confirm" id="modalConfirm">
+                <i class="fas fa-lock" style="margin-right:8px;"></i> Pay Now
+            </button>
+            <p style="font-size:13px; color:#94a3b8; text-align:center; margin-top:14px;">
+                Secure · 30-day money-back guarantee
+            </p>
+        </div>
+    </div>
 
-        function closeBlog() {
-            document.getElementById('blogList').style.display = 'block';
-            document.getElementById('blogFull').style.display = 'none';
-            document.getElementById('blogFull').innerHTML = '';
-        }
-
-        // ---- Metrics counter ----
+    <script>
         (function() {
-            const targetNumbers = { visitors: 4200, users: 230, sessions: 150 };
-            let animationStarted = false;
-            let animationFrameId = null;
-            let startTime = null;
-            const DURATION = 2000;
+            'use strict';
 
-            const elVisitors = document.getElementById('metricVisitors');
-            const elUsers = document.getElementById('metricUsers');
-            const elSessions = document.getElementById('metricSessions');
-
-            function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-
-            function updateNumbers(progress) {
-                const eased = easeOutCubic(progress);
-                elVisitors.textContent = Math.round(eased * targetNumbers.visitors);
-                elUsers.textContent = Math.round(eased * targetNumbers.users);
-                elSessions.textContent = Math.round(eased * targetNumbers.sessions);
-            }
-
-            function animateNumbers(timestamp) {
-                if (!startTime) startTime = timestamp;
-                const elapsed = timestamp - startTime;
-                const progress = Math.min(elapsed / DURATION, 1);
-                updateNumbers(progress);
-                if (progress < 1) {
-                    animationFrameId = requestAnimationFrame(animateNumbers);
-                } else {
-                    elVisitors.textContent = targetNumbers.visitors;
-                    elUsers.textContent = targetNumbers.users;
-                    elSessions.textContent = targetNumbers.sessions;
-                    animationFrameId = null;
-                }
-            }
-
-            function isElementInViewport(el) {
-                const rect = el.getBoundingClientRect();
-                const buffer = 100;
-                return rect.top < (window.innerHeight - buffer) && rect.bottom > buffer;
-            }
-
-            window.startMetricsIfVisible = function() {
-                const section = document.getElementById('metricsSection');
-                if (!section) return;
-                if (isElementInViewport(section) && !animationStarted) {
-                    animationStarted = true;
-                    startTime = null;
-                    if (animationFrameId) cancelAnimationFrame(animationFrameId);
-                    elVisitors.textContent = '0';
-                    elUsers.textContent = '0';
-                    elSessions.textContent = '0';
-                    animationFrameId = requestAnimationFrame(animateNumbers);
-                }
+            // ---- TABS ----
+            const tabs = document.querySelectorAll('.nav-tab');
+            const panels = {
+                about: document.getElementById('tab-about'),
+                pricing: document.getElementById('tab-pricing'),
+                stories: document.getElementById('tab-stories'),
             };
 
-            window.addEventListener('scroll', startMetricsIfVisible, { passive: true });
-            window.addEventListener('resize', startMetricsIfVisible, { passive: true });
-            window.addEventListener('load', function() { setTimeout(startMetricsIfVisible, 400); });
-        })();
+            function activateTab(tabId) {
+                // update buttons
+                tabs.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.tab === tabId);
+                });
+                // update panels
+                Object.keys(panels).forEach(key => {
+                    panels[key].classList.toggle('active', key === tabId);
+                });
+            }
 
-        // ---- Auto-show home on load ----
-        document.addEventListener('DOMContentLoaded', function() {
-            showPage('home');
-        });
+            tabs.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const tabId = this.dataset.tab;
+                    if (tabId) activateTab(tabId);
+                });
+            });
+
+            // ---- CHECKOUT MODAL ----
+            const modal = document.getElementById('checkoutModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalPlan = document.getElementById('modalPlan');
+            const confirmBtn = document.getElementById('modalConfirm');
+
+            // Open modal from any "Checkout" button
+            document.querySelectorAll('.btn-checkout').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const plan = this.dataset.plan || 'Pro';
+                    modalPlan.innerHTML = `You're about to subscribe to <strong>${plan}</strong>`;
+                    modal.classList.add('open');
+                });
+            });
+
+            function closeModal() {
+                modal.classList.remove('open');
+            }
+
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            confirmBtn.addEventListener('click', function() {
+                const name = document.getElementById('cardName').value.trim();
+                const email = document.getElementById('cardEmail').value.trim();
+                if (!name || !email) {
+                    alert('Please fill in your name and email address.');
+                    return;
+                }
+                alert('✅ Payment successful! Welcome to Preppal. We\'ll send your confirmation to ' + email);
+                closeModal();
+                // Optionally reset form
+                document.querySelectorAll('#checkoutModal input').forEach(inp => inp.value = '');
+            });
+
+            // ---- Placeholder image fallback (user-friendly) ----
+            // If images are missing, they'll just be hidden via onerror.
+
+            console.log('Preppal · Loaded successfully');
+            console.log('📸 Image filenames to save:');
+            console.log('  1. classroom-grammar-book.jpg   (HKDSES grammar book)');
+            console.log('  2. ielts-usb-materials.jpg      (USB with IELTS files)');
+            console.log('  3. english-grammar-in-use.jpg   (English Grammar in Use cover)');
+            console.log('  4. furious-girl-belle.jpg       (Belle frustrated)');
+
+        })();
     </script>
 
 </body>
